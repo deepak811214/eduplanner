@@ -1,0 +1,80 @@
+<!--act now page-->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-left back">
+                &nbsp;
+            </div>
+            <div class="col-xs-4 text-center logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <div class="col-xs-4 text-right">
+                <button type="submit" ng-click="next('thankyou')" class="next no-arrow-right">    
+                    Finish
+                </button>                
+            </div>
+            <!--Next Link-->
+        </div>
+    </div>
+</header>
+<!--Header Ends here-->
+
+<section class="content container no-breadcrumb">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <a href="javascript:void(0);" ng-click="next('viewReport');" class="btn btn-red save">
+                <i class="pull-left ed-detail"></i>
+                View Report
+            </a>
+        </div>  
+
+        <div class="col-xs-12 text-center">
+            <a ng-href="{{appointmentURL}}" class="btn btn-red" target="_blank">
+                <i class="pull-left ed-appointment"></i>
+                Make an Appointment
+            </a>
+        </div>
+
+        <div class="col-xs-12 text-center delay">
+            <h1>What if I delay my planning?</h1>
+        </div>
+    </div>
+
+    <div class="row-fluid clearfix">
+        <div class="col-sm-10 col-sm-offset-1 col-xs-12 slider-box text-center ">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <!-- <div id="slider" class="slider" slider-dir ng-model="model.delayYears" min="1" max="20" orientation="horizontal" animate="true">{{delayYears}}</div> -->
+                    <div class="slider-container">
+                      <div slider id="slider" class="slider" ng-model="model.delayYears" start="0" end="{{max}}" >
+                    
+                        <div class="pips pip1">0 yrs</div><div class="pips pip2">{{max}} yrs</div>
+                      </div>
+                     
+
+                    </div>
+                    <!-- <div class ="tooltip-bar">{{model.delayYears}}</div> -->
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="delay-cost clearfix">
+                    <div class ="col-sm-6 col-xs-12 dottedSeprater">
+                            <h2>Additional amount monthly</h2>
+                            <h1 class="delay-figure">SGD {{oldAdditionalMonthlySavings |number:0}} + <span> {{gapAdditionalMonthlySavings | number:0}} </span></h1> 
+                        </div>
+                        <div class ="col-sm-6 col-xs-12 last ">
+                            <h2>Lump sum required now</h2>
+                            <h1 class="delay-figure">SGD {{oldAdditionalLumpSum | number:0}} + <span> {{gapAdditionalLumpSum | number:0}} </span></h1> 
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-10 col-sm-10 col-sm-offset-1 col-xs-12">
+        <h3 class="text-center note">You will need to save even more if you delay {{childName}} education planning.</h3>
+    </div>
+    
+</section>

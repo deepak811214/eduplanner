@@ -1,0 +1,283 @@
+
+<header>
+    <div class="container">
+        <div class="row">           
+             <div class="col-xs-4 logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <!--Logo-->
+
+            <div class="col-xs-4 text-center my-report">
+                My Report
+            </div>
+            <!--Back Link-->
+
+
+            <div class="col-xs-4 text-right">
+                <a href="javascript:void(0);" onclick="window.print();" class="next hidden-xs print-finish">
+                    Print
+                </a>
+
+                <a href="javascript:void(0);" ng-click="next('thankyou');" class="next no-arrow-right print-finish">
+                    Finish
+                </a>
+
+            
+            </div>
+            <!--Next Link-->    
+        </div>
+    </div>
+</header>
+ <section class="container no-breadcrumb content pdf">    
+    <div class="row">
+        <div class="col-xs-12 text-left logo">
+            <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="title"><i class="icon ed-male"></i>{{childName}} Education Planner</h4>
+        </div>
+    </div>
+
+    <div class="pdf-summary">
+        <div class="row">            
+            <div class="col-sm-6">
+                <div class="fund-report clearfix">
+                    <p class="">You can reach {{childName}} education goal by saving an additional</p>
+                    <h2>
+                        <strong>SGD {{additionalLumpSum | currency: " "}}</strong> lump sum
+                        <div>OR</div>
+                        <strong>SGD {{additionalMonthlySavings | currency: " "}}</strong> monthly               
+                    </h2>
+                </div>          
+            </div>
+
+            <div class="col-sm-6">                
+                <div class="clearfix fund-report">
+                    <em class="bullet bullet-blue"></em>
+                    <span class="pull-left">Total funds <strong>required</strong> at {{max}} yrs</span>
+                    <span class="pull-right">{{totalFundRequired | currency: " "}}</span>
+                </div>
+
+                <div class="clearfix fund-report">
+                    <em class="bullet bullet-orange"></em>
+                    <span class="pull-left">Total funds <strong>available</strong> at {{max}} yrs</span>
+                    <span class="pull-right">{{totalFundAvailable | currency: " "}}</span>
+                </div>
+                
+
+                <div class="text-left">
+                    <em class="bullet" ng-class="{'lightRed': !surplusChart, 'lightGreen': surplusChart}"></em>
+                    <span class="pull-left" ng-hide="surplusChart">Shortfall</span>
+                    <span class="pull-left" ng-show="surplusChart">Surplus</span>
+                    <span class="pull-right shortfall" ng-hide="surplusChart">-SGD {{shortfallSurplus | customCurrency : " "}}</span>
+                    <span class="pull-right surplus" ng-show="surplusChart">+SGD {{shortfallSurplus | currency: " "}}</span>
+                </div>
+            </div>           
+        </div>  
+
+        <div class="row graph-scroll">
+           <div id="reportPageGraph"></div>
+        </div>        
+    </div>
+
+    <div class="pdf-note">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2 ng-show="surplusChart">Keep it up! You are achieving your child's education goal very soon!</h2>
+                        <h2 ng-hide="surplusChart">Based on your current savings set for {{childName}} education, your expected funds available is <strong >SGD{{totalFundAvailable | currency: " "}}</strong></h2>
+                    </div>          
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p ng-show="surplusChart">
+                            You have a surplus of  <strong >SGD {{additionalLumpSum | currency: " "}}</strong> to provide {{childName}} SGD {{totalFundRequired | currency: " "}} required for his education in <strong>{{countryText}}</strong>.
+                        </p>
+                        <p ng-hide="surplusChart">
+                         You have a <strong class="red-text">SGD {{additionalLumpSum | currency: " "}}</strong> to provide {{childName}} SGD {{totalFundRequired | currency: " "}} required for his education in <strong>{{countryText}}</strong>.
+                        </p>
+
+                        <p ng-hide="surplusChart">
+                            Te reach {{childName}} education goal, you will need to save an additional <strong class="red-text">SGD {{additionalLumpSum | currency: " "}} lump sum</strong> or <strong class="red-text">SGD {{additionalMonthlySavings | currency: " "}} /month.</strong></p>
+                    </div>
+
+                    <div class="col-sm-12" ng-hide="surplusChart">
+                        If you delay the plan for 1 years, you will need to save an incremental<br/>
+                        <strong class="red-text">SGD {{additionalLumpSum | currency: " "}} lump sum<br/>or<br/>SGD {{additionalMonthlySavings | currency: " "}}</strong>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div>       
+</section>
+
+<footer class="pdf-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-3 col-xs-12 text-left">
+                    <p>DBS Education report</p>
+                </div>
+                <div class="col-sm-6 col-xs-12 text-center">
+                    <p>© 2014 DBS Bank Ltd. Co. Reg. No. 1968003006E</p>
+                </div>
+                <div class="col-sm-3 col-xs-12 text-right">
+                    <p>Page 1 of 2</p>
+                </div>
+            </div>
+        </div>            
+    </div>
+</footer>
+<div class="break"></div>
+
+<section class="container pdf">
+    <div class="row">
+        <div class="col-xs-12 text-left logo">
+            <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="title"><i class="icon ed-male"></i>{{childName}} Education Planner</h4>
+        </div>
+    </div>
+    
+    <div class="next-steps">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Hi {{childName}},</h2>
+                <p>
+                    your next step in helping {{childName}} to meet his educational goal.This is a continuous process that needs to be reviewed peridodically when tehre are changes such as
+                </p>
+                <ul>
+                    <li><span>Change in education goals</span></li>
+                    <li><span>Change in saving habits</span></li>
+                    <li><span>Change in major life stage</span></li>
+                    <li><span>Change in monthly income</span></li>
+                </ul>      
+            </div>
+        </div>
+    </div>       
+        
+
+    <div class="row">
+        <div class="col-sm-12">
+             <h3 class="text-center">Summary</h3>
+        </div>
+    </div>
+
+    <div class="row pdf-figures">           
+        <div class="col-sm-4 pull-left">
+            <h5 class="">
+                <i class="icon ed-target"></i>Education Target
+            </h5>
+            <label>Desired Country of Education</label>
+            <strong>{{countryText}}</strong>
+
+            <label>Target entry age</label>
+            <span ng-show="isMale"><strong >{{max}} years</strong></span>
+             <span ng-show="!isMale"><strong >{{max}} years</strong> </span>
+            <label>Savings period</label>
+             <span ng-show="isMale"><strong >{{savingperiod}} years</strong>  </span>
+            <span ng-show="!isMale"> <strong >{{femaleTargetAge}} years</strong>  </span>                  
+        </div>       
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+             <h3 class="text-center ">Financial Information</h3>
+        </div>
+    </div>
+
+    <div class="row pdf-figures">           
+        <div class="col-sm-4 pull-left">
+            <h5 class="">
+                <i class="icon ed-cash"></i>Cash
+            </h5>
+            <label>Total</label>
+            <strong>SGD {{cash | currency: " "}}</strong>
+
+            <label>Allocated to University</label>
+            <strong>SGD {{cash | currency: " "}}</strong>
+
+            <label>Annual Returns</label>
+            <strong>{{cashRor}}%</strong>                      
+        </div> 
+
+        <div class="col-sm-4 pull-left">
+            <h5 class="">
+                <i class="icon ed-investment"></i>Investment &amp; Insurance
+            </h5>
+            <label>Total</label>
+            <strong>SGD {{insuranceCash | currency: " "}}</strong>
+
+            <label>Allocated to University</label>
+            <strong>SGD {{insuranceCash | currency: " "}}</strong>
+
+            <label>Annual Returns</label>
+            <strong>{{insuranceRor}}%</strong>                          
+        </div>    
+
+        <div class="col-sm-4 pull-left">
+            <h5 class="">
+                <i class="icon ed-lumpsum"></i>Lump sum savings at University age
+            </h5>
+           <label>Total</label>
+            <strong>SGD {{lumpsumAvailable | currency: " "}}</strong>             
+        </div>          
+    </div>
+
+    <div class="row important-notes">
+        <div class="col-sm-12">
+            <h5><strong>Important information</strong></h5>
+            <ul class="">
+                <li>This Education planner and any report generated from using the education planner is intended to be used for illustrative purposes only and have not been tailored to
+                yout specific investment objectives, financial and particular needs.</li>
+                <li>The estimates generated by the planner and the contents of any report are based on the information provided by you.It is not and doesnot constitute of form part of any offer, recommendation, invitation or solicitation to subscribe to or to enter into any transactions, and should not be viewed as such.The contents of the report shall not be regarded as an estimation, advice or recommendation by us.</li>
+                <li>You should not rely on this education planner or the contents of the report generated to make any investment decisions and you should seek advice from a financial adviser before making a 
+                 commitment to purchase any product for your saving purposes.</li>
+                <li>The Bank shall not be liable for any error and/or loss
+                    suffered arrising from or in connection with any use or reliance
+                    on the app or the report generated.</li>
+                <li>You hereby confirm that you have been read and understood
+                    and hereby agree to be bound by the DBS Privacy Policy, as may be
+                    amended, supplemented and/or substituted by us from time to time
+                    (a) copy of which can be found on <a href="http://www.dbs.com/privacy" target="_blank">www.dbs.com/privacy</a> and (b) you hereby concent
+                    to our collection, use, disclosure and processing of your
+                    personal data in accordance with the DBS Privacy Policy. Where
+                    you have disclosed a third party's personal data to DBS, you
+                    confirm that that you are authorised to consent, and or so
+                    consent, on behalf of the other individual for DBS to collect,
+                    use, disclose and process their personal data for the purposes of
+                    using this app.
+                </li>
+                <li>You authorise us to send you the report based on the
+                    email address that you provide us. You acknowledge and accept the
+                    risks involved in email communication, including delay or failure
+                    of delivery, and risk of unauthorised access.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer class="pdf-footer">
+    <div class="container">
+        <div class="row">
+                <div class="col-sm-3 col-xs-12 text-left">
+                    <p>DBS Education report</p>
+                </div>
+                <div class="col-sm-6 col-xs-12 text-center">
+                    <p>© 2014 DBS Bank Ltd. Co. Reg. No. 1968003006E</p>
+                </div>
+                <div class="col-sm-3 col-xs-12 text-right">
+                    <p>Page 2 of 2</p>
+                </div>
+        </div>            
+    </div>
+</footer>

@@ -1,0 +1,22 @@
+li a,
+footer h2.startnow,
+footer h2.startnow a,
+header .next,
+.source-data-row .source-title i,
+.information a:hover,
+.pdf .next-steps li,
+.red-text{
+  color:#cc0000; 
+}
+header .back{
+	color:#999494;
+}
+
+.btn-red {
+  background: none repeat scroll 0 0 #C00;
+  border: 0px solid rgba(0, 0, 0, 0);
+  border-bottom: 2px solid #7F0000;  
+}
+.btn-red:hover, .btn-red:focus {
+  background-color: #AB0000;  
+}

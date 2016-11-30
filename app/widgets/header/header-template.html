@@ -1,0 +1,54 @@
+
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3 col-sm-4 text-left logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <!--Back Link-->
+            
+            <div class="col-sm-4 col-xs-6 text-center landing-page-title"> 
+                <h1> <i class="icon ed-planner hidden-xs"></i> <span class="page-title">Education Planner</span> </h1> 
+            </div>
+            <!--Logo--> 
+            <div class="col-xs-3 col-sm-4 text-right hidden-xs">   
+                <!-- <a href="#/personalDetails" target="_self" class="next">               
+                    Next <i class="icon ed-next"></i>
+                </a> -->                
+            </div>
+            <!--Next Link-->    
+        </div>
+    </div>
+</header>
+
+<section class="landing-page">
+    <div class="container">
+        <div class="row" ng-if="isRefreshed" ng-cloak>
+            <div class="col-xs-12 text-center alert-refresh">
+                Please start again as the page has timed out. If you have used Reload/Refresh button while accessing DBS Education Planner, please do not do so.                        
+            </div>          
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h1>
+                    Plan your child's education goal in<br/>3 simple steps.     
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <figure ng-class="{'refreshimage':isRefreshed}">
+        <img src="app/theme/images/couple-Image.png" alt="" class="img-responsive" />
+    </figure>
+</section>
+
+<footer ng-show="isActiveOne('/home')">
+    <div class="container">
+        <div class="row">
+            <h2 class="startnow text-center">
+               <a href="javascript:void(0);" ng-click="next('personalDetails')">Start Now<i class="icon ed-next"></i></a>
+                <!-- <a href="partials/personalDetails.html">Start Now<i class="icon ed-next"></i></a> -->
+            </h2>
+        </div>
+    </div>
+</footer>

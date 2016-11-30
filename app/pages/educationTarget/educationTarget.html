@@ -1,0 +1,153 @@
+
+<form method="post" ng-submit ="countryUpdate()" novalidate>
+
+ <!--Education target page -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <a href="javascript:void(0);" ng-click="back('personalDetails')" class="back">       
+                    <i class="icon ed-back"></i> Back 
+                </a>                
+            </div>
+            <!--Back Link-->
+            <div class="col-xs-4 text-center logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <!--Logo-->
+            <div class="col-xs-4 text-right">
+                <button type="submit" class="next">       
+                    Next <i class="icon ed-next"></i>
+                </button>                
+            </div>
+            <!--Next Link-->
+        </div>
+    </div>
+</header>
+<!--Header Ends here-->
+<div class="breadcrumb-wrapper text-center" >
+    <div class="row">
+        <ol class="breadcrumb">
+    <li>
+        <a href="javascript:void(0);" ng-click="back('personalDetails')">
+            <em>1</em>
+            <span class="hidden-logic">
+            <em>.</em>About You</span>
+        </a>
+    </li>
+    
+    <li>
+        <i class="icon ed-next"></i>
+        <a href="javascript:void(0);" class="active">
+            <em>2</em>
+            <span class="hidden-logic">
+            <em>.</em>Education Target</span>
+        </a>
+    </li>
+    <li>
+        <i class="icon ed-next"></i>
+        <a href="javascript:void(0);" ng-click="countryUpdate();">
+            <em>3</em>
+            <span class="hidden-logic">
+            <em>.</em>Sources of Funds</span>
+        </a>
+    </li>
+    
+</ol>
+    </div>
+</div>
+<!--breadcrumb Ends here-->
+<section class="content container"> 
+    <div class="row">
+        <h1 class="text-center section-title">Desired Country for Education</h1>
+
+
+        <div class="col-xs-12 text-center">
+            <div class="country1">
+                <a href="" ng-click="setCountry('SG')" ng-class="{'myCountry': isSingapore , '': !isSingapore}">
+                    <figure>
+                    <img src="app/theme/images/icon_sg_selected.png" alt="" class="img-responsive active" ng-show="isSingapore">
+                    <img src="app/theme/images/icon_sg_norma.png" alt="" class="img-responsive " ng-hide="isSingapore">
+                    </figure>
+                    <p>Singapore</p>
+                </a>
+
+                <a href="" ng-click="setCountry('AU')" ng-class="{'myCountry': isAustralia , '': !isAustralia}">
+                    <figure>
+                    <img src="app/theme/images/icon_au_norma.png" alt="" class="img-responsive" ng-hide="isAustralia">
+                    <img src="app/theme/images/icon_au_selectedx.png" alt="" class="img-responsive" ng-show="isAustralia">
+                    </figure>
+                    <p>Australia</p>
+                </a>
+
+                <a href="" ng-click="setCountry('US')" ng-class="{'myCountry': isUnitedStates , '': !isUnitedStates}">
+                    <figure>
+                    <img src="app/theme/images/icon_us_normal.png" alt="" class="img-responsive" ng-hide="isUnitedStates">
+                    <img src="app/theme/images/icon_us_selected.png" alt="" class="img-responsive" ng-show="isUnitedStates">
+                    </figure>
+                    <p>United States</p>
+                </a>
+
+                <a href="" ng-click="setCountry('UK')" ng-class="{'myCountry': isUnitedKingdom , '': !isUnitedKingdom}">
+                    <figure>
+                    <img src="app/theme/images/icon_uk_normal.png" alt="" class="img-responsive" ng-hide ="isUnitedKingdom">
+                    <img src="app/theme/images/icon_uk_selected.png" alt="" class="img-responsive" ng-show ="isUnitedKingdom">
+                    </figure>
+                    <p>United Kingdom</p>
+                </a>
+            </div>
+        </div>
+        <!--Country Selection-->
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 text-center degree">
+            <div>
+                <i class="icon ed-degree-male" ng-show="isMale"></i>    
+                 <i class="icon ed-degree-female" ng-show="isFemale"></i>        
+                <h3>University Degree</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 information">
+            <p class="clearfix">
+                <a href="" data-toggle="modal" data-target="#sources">
+                    <i class="icon ed-info"></i> <span class="">Sources of inflation for Education and Accomodation</span>
+                </a>
+                
+            </p>
+        </div>
+    </div>  
+</section>
+<!--content Ends here-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="sources" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog container">
+    <div class="modal-content">      
+      <div class="modal-body">
+      <i class="icon ed-close" data-dismiss="modal"></i>
+        <h2>Education Inflation (p.a.)</h2>
+        <ul>
+            <li><a href="http://www.singstat.gov.sg/docs/default-source/default-document-library/statistics/browse_by_theme/economy/statistical_tables/aesa31.xlsx" target="_blank">Singapore: Department of Statistics of Singapore, Year 2014 </a></li>
+            <li><a href="http://www.abs.gov.au/AUSSTATS/abs@.nsf/mf/6401.0" target="_blank">Australia: Australian Bureau of Statistics, December Quarter 2013 to December Quarter 2014 </a></li>
+            <li><a href="http://www.bls.gov/news.release/cpi.t07.htm" target="_blank">US: Bureau of Labour Statistics, unadjusted percent change January 2014 to January 2015 </a></li>
+            <li><a href="http://www.ons.gov.uk/ons/rel/cpi/consumer-price-indices/december-2014/consumer-price-inflation-reference-tables.xls" target="_blank">UK: Office for National Statistics (ONS) ,Year 2014</a></li>
+        </ul>
+
+        <h2>Living  Inflation (p.a.)</h2>
+        <ul class="last">
+            <li><a href="http://www.mas.gov.sg/monetary-policy-and-economics/education-and-research/education/inflation-calculator.aspx" target="_blank">Singapore: Monetary Authority of Singapore, Inflation Calculator, Year 2003 to Year 2013 </a></li>
+            <li><a href="http://www.rba.gov.au/calculator/annualDecimal.html" target="_blank">Australia: Reserve Bank of Australia, Year 2004 to Year 2014 </a></li>
+            <li><a href="http://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/" target="_blank">US: US Inflation Calculator, Year 2004 to Year 2014 </a></li>
+            <li><a href="http://www.ons.gov.uk/ons/rel/cpi/consumer-price-indices/december-2014/consumer-price-inflation-reference-tables.xls" target="_blank">UK: Office for National Statistics (ONS) ,Year 2004 to Year 2014 </a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</form>

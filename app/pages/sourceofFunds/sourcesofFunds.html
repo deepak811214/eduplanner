@@ -1,0 +1,187 @@
+  <form name="accountForm" method ="post" id="sourceofFunds" ng-submit ="updateAccount($event,model)" novalidate>
+<!--source of Funds -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <a href="javascript:void(0);" ng-click="back('educationTarget');" class="back">       
+                    <i class="icon ed-back"></i> Back 
+                </a>                
+            </div>
+             <!--Back Link-->
+            <div class="col-xs-4 text-center logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <!--Logo-->
+            <div class="col-xs-4 text-right">
+                <button type="submit" form="sourceofFunds" class="next">    
+                    View <i class="icon ed-next"></i>
+                </button>                
+            </div>
+            <!--Next Link-->
+        </div>
+    </div>
+</header>
+<!--Header Ends here-->
+<div class="breadcrumb-wrapper text-center" >
+    <div class="row">
+        <ol class="breadcrumb">
+    <li>
+        <a href="javascript:void(0);" ng-click="back('personalDetails');">
+            <em>1</em>
+            <span class="hidden-logic">
+            <em>.</em>About You</span>
+        </a>
+    </li>
+    
+    <li>
+        <i class="icon ed-next"></i>
+        <a href="javascript:void(0);" ng-click="back('educationTarget');">
+            <em>2</em>
+            <span class="hidden-logic">
+            <em>.</em>Education Target</span>
+        </a>
+    </li>
+    <li>
+        <i class="icon ed-next"></i>
+        <a href="javascript:void(0);" class="active">
+            <em>3</em>
+            <span class="hidden-logic">
+            <em>.</em>Sources of Funds</span>
+        </a>
+    </li>
+    
+</ol>
+    </div>
+</div>
+<!--breadcrumb Ends here-->
+<section class="fund-sources clearfix">
+    <div class="">
+        <div class="col-sm-12">
+            <h1 class="text-center">How much have you set aside for <span>{{childName}}</span> education?</h1>
+        </div>
+    </div>
+</section>
+
+<section class="content container no-margintop">    
+    <h2 class="text-center red-text">CURRENT</h2>
+
+    <div class="row source-data-row">
+        <div class="col-sm-5 col-xs-12 source-title">
+            <i class="icon ed-cash"></i>
+            <span>Cash</span>
+            <span class="icon ed-info" data-toggle="tooltip" tooltip data-placement="top" tooltip title="Savings, Fixed Deposit ..etc"></span>
+        </div>
+
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-sm-7 col-xs-8">
+                    <div class="form-row">
+                        <label>Allocated to University</label>
+                        <div class="input-box" ng-class="{'inputError': (accountForm.submitted || accountForm.cash.$dirty) && accountForm.cash.$error.required || showError}">
+                            <input type="text" ng-change="validateCashAndInsurance()" ng-model="model.cash" name="cash" remove-zero fcsa-number number-dir required maxlength="13"/> 
+                        </div>
+                         <span class="error" ng-show="(accountForm.submitted || accountForm.cash.$dirty) && accountForm.cash.$error.required || showError">Please enter valid input.</span>
+                    </div>
+                    
+                    <!--  <span class="error" ng-show="accountForm.cash.$dirty && accountForm.cash.$error.pattern">Please use numbers only</span> -->
+                </div>
+
+                <div class="col-sm-5 col-xs-4">
+                    <div class="form-row">
+                        <label class="clearfix">
+                            <span>Annual Return</span>
+                            <i class="icon ed-help hidden-xs" data-toggle="tooltip" tooltip data-placement="top" data-original-title="Based on DBS Savings Account average interest rate from 2004 to 2013 (As at 31 Dec 2013)"></i>
+                        </label>
+                        <div class="input-box clearfix" ng-class="{'inputError':(accountForm.submitted || accountForm.cashRor.$dirty) 
+                        && accountForm.cashRor.$error.required}">
+                            <input type="text" name="cashRor" ng-model="model.cashRor" class="smaller" number-dir maxlength="5"  required />
+                            <i class="icon ed-help hidden-sm hidden-md hidden-lg" data-toggle="tooltip" tooltip data-placement="top" data-original-title="Based on DBS Savings Account average interest rate from 2004 to 2013 (As at 31 Dec 2013)"></i>
+                        </div>
+                         <span class="error" ng-show="(accountForm.submitted || accountForm.cashRor.$dirty) && accountForm.cashRor.$error.required">Please enter valid input.</span>
+                    </div>
+                   
+                     <!-- <span class="error" ng-show="accountfrom.cashRor.$dirty && accountForm.cashRor.$error.pattern">Please use numbers only</span> -->
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="row source-data-row last">
+        <div class="col-sm-5 col-xs-12 source-title two-liner">
+            <i class="icon ed-investment"></i>
+            <span>Insurance &amp;<br/>Investment </span>
+            <span class="icon ed-info" data-toggle="tooltip" tooltip data-placement="top" title="Unit Trust, Insurance Endowment ..etc"></span>
+        </div>
+
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-sm-7 col-xs-8">
+                    <div class="form-row">
+                        <label>Allocated to University</label>
+                        <div class="input-box" ng-class="{'inputError':(accountForm.submitted || accountForm.insuranceCash.$dirty) && accountForm.insuranceCash.$error.required || showError}">
+                            <input type="text" name="insuranceCash" ng-change="validateCashAndInsurance()" ng-model ="model.insuranceCash" fcsa-number remove-zero number-dir maxlength="13" required/>
+                        </div>
+                    </div>
+                     <span class="error" ng-show="(accountForm.submitted || accountForm.insuranceCash.$dirty) && accountForm.insuranceCash.$error.required || showError">Please enter valid input.</span>
+                     <!-- <span class="error" ng-show="accountFrom.insurancecash.$dirty && accountForm.insuranceCash.$error.pattern">Please use numbers only</span> -->
+                </div>
+
+                <div class="col-sm-5 col-xs-4">
+                    <div class="form-row">
+                        <label class="clearfix">
+                            <span>Annual Return</span>
+                            <i class="icon ed-help hidden-xs" data-toggle="tooltip"  tooltip data-placement="top" data-original-title="Based on CPF Risk Profile guideline, the following risk profile and expected investment returns are recommend:
+                                Risk Profile Gross Investment Returns
+                                Conservative 2-3% p.a.
+                                Moderate 4-5% p.a.
+                                Aggeressive 6-7% p.a."></i>
+                        </label>
+                        <div class="input-box clearfix" ng-class="{'inputError':(accountForm.submitted || accountForm.insuranceRor.$dirty) && accountForm.insuranceRor.$error.required}">
+                            <input type="text" name="insuranceRor" ng-model="model.insuranceRor" class="smaller" number-dir maxlength="5" required/>
+                            <i class="icon ed-help hidden-sm hidden-md hidden-lg" data-toggle="tooltip"  tooltip data-placement="top" data-original-title="Based on CPF Risk Profile guideline, the following risk profile and expected investment returns are recommend:
+                                Risk Profile Gross Investment Returns
+                                Conservative 2-3% p.a.
+                                Moderate 4-5% p.a.
+                                Aggeressive 6-7% p.a."></i>
+                        </div>
+                    </div>
+                    <span class="error" ng-show="(accountForm.submitted || accountForm.insuranceRor.$dirty) && accountForm.insuranceRor.$error.required">Please enter valid input.</span>
+                   <!--  <span class="error" ng-show="accountForm.insuranceRor.$dirty && accountForm.insuranceRor.$error.pattern">Please use numbers only</span> -->
+                </div>
+            </div>
+        </div>
+    </div>  
+</section>
+
+
+<section class="content container no-margintop">
+    <h2 class="text-center red-text">FUTURE</h2>
+
+        <div class="row source-data-row last">
+            <div class="col-sm-5 col-xs-12 source-title two-liner">
+                <i class="icon ed-lumpsum"></i>
+                <span>Lump sum at<br/>University Age</span>
+                <span class="icon ed-info" data-toggle="tooltip" tooltip data-placement="top" title="Maturity of Fixed Deposit or Insurance endowment plan"></span>
+            </div>
+
+            <div class="col-sm-7">
+            <div class="row">
+                <div class="col-sm-7 col-xs-8">
+                    <div class="form-row">
+                        <label>Allocated to University</label>
+                        <div class="input-box" ng-class="{'inputError':(accountForm.submitted || accountForm.lumpsumpCash.$dirty) && accountForm.lumpsumpCash.$error.required}">
+                            <input type="text" ng-model ="model.lumpsumpCash" fcsa-number remove-zero name="lumpsumpCash" number-dir maxlength="13" required/>
+                        </div>
+                    </div>
+                    <span class="error" ng-show="(accountForm.submitted || accountForm.lumpsumpCash.$dirty) && accountForm.lumpsumpCash.$error.required">Please enter valid input.</span>
+                       <!--  <span class="error" ng-show="accountForm.lumpsumpCash.$dirty && account.lumpsumpCash.$error.pattern">Please use numbers only</span> -->
+                </div>
+            </div>
+        </div>
+        </div>
+</section>
+<!--content Ends here-->
+ </form>

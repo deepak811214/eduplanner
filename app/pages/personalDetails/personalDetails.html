@@ -1,0 +1,147 @@
+<!-- personal Details page header -->
+<form name="userForm" method ="post" id="personalDetails"  ng-submit ="update($event,model)" novalidate>
+ <header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                &nbsp;
+            </div>
+            <!--Back Link-->
+            <div class="col-xs-4 text-center logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <!--Logo-->
+            <div class="col-xs-4 text-right">
+                <button type="submit" class="next" form="personalDetails">
+                    Next 
+                    <i class="icon ed-next"></i>
+                </button>
+            </div>
+            <!--Next Link-->
+        </div>
+    </div>
+</header>
+<!--Header Ends here-->
+<div class="breadcrumb-wrapper text-center" >
+    <div class="row">
+        <ol class="breadcrumb">
+    <li>
+        <a href="javascript:void(0);" class="active">
+            <em>1</em>
+            <span class="hidden-logic">
+            <em>.</em>About You</span>
+        </a>
+    </li>
+    <li>
+        <i class="icon ed-next"></i>
+       <button type="submit" form="personalDetails">
+            <em>2</em>
+            <span class="hidden-logic">
+            <em>.</em>Education Target</span>
+        </button>
+    </li>
+    <li>
+        <i class="icon ed-next"></i>
+        <a href="javascript:void(0);">
+            <em>3</em>
+            <span class="hidden-logic">
+            <em>.</em>Sources of Funds</span>
+        </a>
+    </li>
+    
+</ol>
+    </div>
+</div>
+<!--breadcrumb Ends here-->
+
+
+<section class="container content">
+    <div class="row">
+        <div class="">
+            <div class="col-sm-6 extrapadding-right">
+                <div class="form-row" >
+                    <label>Your Name</label>
+                    <div class="input-box" ng-class="{'inputError': (userForm.submitted || userForm.name.$dirty) && userForm.name.$error.required || userForm.name.$dirty && userForm.name.$error.pattern}">
+                        <input type="text" name="name" ng-model="model.name" ng-pattern="/^[a-zA-Z ]+$/" maxlength="60"  required />                  
+                    </div>
+                    <span class="error" ng-show="(userForm.submitted || userForm.name.$dirty) && userForm.name.$error.required" ng-cloak>
+                        Please enter valid input.
+                    </span> 
+                    <span class="error" ng-show="userForm.name.$dirty && userForm.name.$error.pattern" ng-cloak>
+                        Please enter valid input.
+                    </span>
+                </div>
+
+                <div class="form-row last mobile-last">
+                    <label>Your Child's Name</label>
+                    <div class="input-box" ng-class="{'inputError': (userForm.submitted || userForm.childName.$dirty) && userForm.childName.$error.required || userForm.childName.$dirty && userForm.childName.$error.pattern}">
+                        <input type="text" name="childName" ng-model="model.childName" ng-pattern="/^[a-zA-Z ]+$/" maxlength="60" required/>                        
+                    </div>
+                    <span class="error"  ng-show="(userForm.submitted || userForm.childName.$dirty) && userForm.childName.$error.required" ng-cloak>
+                        Your child name is required
+                    </span>
+                    <span class="error" ng-show="userForm.childName.$dirty && userForm.childName.$error.pattern" ng-cloak>
+                        Please enter valid input.
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-sm-6 extrapadding-left">
+                <div class="form-row">
+                    <label>Your Child's Gender</label>
+                    <div class="clearfix">
+  
+                        <div class="gender male text-center">
+                            <a ng-click="setGender('Male')" ng-class="{'myStyleMale': isMale}" >
+                                <i class="icon ed-male" ng-show="!isMale"></i>
+                                 <i ng-show="isMale" class="icon ed-male active-male"></i>
+                                 <p>Male</p>
+                            </a>
+                         </div>
+
+                        <div class="gender female text-center">
+                             <a ng-click="setGender('Female')" ng-class="{'myStyleFemale': !isMale}">
+                                <i class="icon ed-female" ng-show="isMale"></i>
+                                <i class="icon ed-female active-female" ng-show="!isMale"></i>
+                                <p>Female</p>
+                             </a>
+                        </div>       
+                    </div>
+                </div>
+
+                <div class="form-row last">
+                    <label>Your Child's Age</label>
+                    <div class="input-box" ng-class="{'inputError' : (userForm.submitted || userForm.childAge.$dirty) && userForm.childAge.$error.required || ageError}">
+
+                        <input type="tel" name="childAge" class="text-right hidden-xs" ng-model="model.childAge" ng-change="childAgeValidation()" number-dir maxlength="2" required/>
+
+                        <div ng-show="isMale">
+                            <select class="visible-xs drop-down" id="age" ng-model="model.childAge" ng-change="childAgeValidation()">
+                                <option ng-repeat="age in ageMaleArr" ng-value="age">{{age}}</option>
+                            </select>
+                        </div>
+                        <div ng-show="!isMale">
+                            <select class="visible-xs drop-down" id="age" ng-model="model.childAge" ng-change="childAgeValidation()">
+                                <option ng-repeat="age in ageFemaleArr" ng-value="age">{{age}}</option>
+                            </select>
+                        </div>                         
+                    </div>
+                    <span class="error" ng-show="(userForm.submitted || userForm.childAge.$dirty) && userForm.childAge.$error.required" ng-cloak>
+                        Please enter valid input
+                    </span>
+                    <span class="error" ng-show="ageError && isMale" ng-cloak>
+                        Please enter the age between 0 and 21
+                    </span>
+                    <span class="error" ng-show="ageError && !isMale" ng-cloak>
+                        Please enter the age between 0 and 19
+                    </span>
+                </div>  
+                     
+            </div>
+        </div>
+    </div>
+ 
+</section>
+<!--content Ends here-->
+ </form>      
+

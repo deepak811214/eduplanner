@@ -1,0 +1,90 @@
+<!-- Report Page -->
+  <header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <a href="javascript:void(0);" ng-click="pageUp('edit')" class="back no-arrow-left">       
+                    Edit 
+                </a> 
+            </div>
+            <!--Back Link-->
+            <div class="col-xs-4 text-center logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <!--Logo-->
+            <div class="col-xs-4 text-right">
+                <a href="javascript:void(0);" ng-click="next('actNow');" class="next">       
+                    Next <i class="icon ed-next"></i>
+                </a> 
+                
+            </div>
+            <!--Next Link-->
+        </div>
+    </div>
+</header>
+
+<section class="content container no-breadcrumb">   
+    <div class="row">
+    <div class="col-sm-6 col-xs-12" ng-show ="surplusChart">
+     <label class="pull-left surplus-title">Surplus</label>
+    </div>
+        <div class="col-sm-6 col-xs-12" ng-hide="surplusChart">
+            <div class="fund-report clearfix">
+                <label class="pull-left">{{childName}} education goal</label>
+                <span class="pull-right">SGD<strong>{{totalFundRequired | currency: " "}}</strong></span>
+            </div>
+
+            <div class="fund-report clearfix">
+                <label class="pull-left">Reach your goal by</label>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="" ng-click="showFirstTab()" data-target="#tab1" role="tab" >Lump Sum</a></li>
+                    <li role="presentation"><a href="" ng-click="showSecondTab()" data-target="#tab2" data-toggle="tab">Monthly</a></li>   
+                </ul>
+                <span class="pull-right" ng-show="isLumpSum">SGD<strong>{{additionalLumpSum | currency: " "}}</strong></span>
+                <span class="pull-right additionalMonthlySavings" ng-show="isMonthly">SGD<strong>{{additionalMonthlySavings | currency: " "}}</strong></span>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xs-12">                
+            <div class="clearfix fund-report">
+                <em class="bullet bullet-blue"></em>
+                <span class="pull-left">Total funds <strong>required</strong> at {{max}} yrs</span>
+                <span class="pull-right totalfundrequired">{{totalFundRequired | currency: " "}}</span>
+            </div>
+
+            <div class="clearfix fund-report">
+                <em class="bullet bullet-orange"></em>
+                <span class="pull-left">Total funds <strong>available</strong> at {{max}} yrs</span>
+                <span class="pull-right">{{totalFundAvailable | currency: " "}}</span>
+            </div>
+            
+
+            <div class="text-left">
+                <em class="bullet" ng-class="{'lightRed': !surplusChart, 'lightGreen': surplusChart}"></em>
+                <span class="pull-left" ng-hide="surplusChart">Shortfall</span>
+                <span class="pull-left" ng-show="surplusChart">Surplus</span>
+                <span class="pull-right shortfall" ng-hide="surplusChart">-SGD {{shortfallSurplus | customCurrency : " "}}</span>
+                <span class="pull-right surplus" ng-show="surplusChart">+SGD {{shortfallSurplus | customCurrency : " "}}</span>
+            </div>
+        </div>          
+    </div>  
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="tab-content graphholder" id="container" >
+                <div role="tabpanel" class="tab-pane active" id="tab1"  ng-hide="surplusChart">
+                    <highchart id="chart1"  config="chartLumpsumConfig" ng-hide ="surplusChart"></highchart>                    
+                </div>
+                <div role="tabpane2" class="tab-pane" id="tab2" ng-hide="surplusChart" style="width:100%; height:400px;">  
+                    <highchart id="chart2"  config="chartMonthlyConfig" ng-hide ="surplusChart" ></highchart>
+                </div>
+                 <div ng-show="surplusChart">  
+                    <highchart id="chart3"  config="chartSurplusConfig" ></highchart>
+                </div>
+
+        </div>           
+    </div>
+    <!--HighCharts Container Ends Here-->
+</section>
+
+

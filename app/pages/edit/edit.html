@@ -1,0 +1,209 @@
+<form name="editForm" ng-submit ="updateReport($event, model)" id="edit" novalidate class="">
+<!--edit page -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 text-left">
+                <button type="reset" ng-click="backReport()" class="back">    
+                    Cancel
+                </button>             
+            </div>
+            <!--Back Link-->
+            <div class="col-xs-4 text-center logo">
+                <div><img ng-src="{{logoImageName}}" alt="DBS Education Planner" class="" /></div>
+            </div>
+            <!--Logo-->
+            <div class="col-xs-4 text-right">
+                <button type="submit" class="save" ng-disabled="disabledButton()" form="edit" ng-class="{'blackColor': editForm.$dirty && !ageError || isCountrySelected || isGenderChanged}" ng-click="submitted=true">                    
+                    Save
+                </button>
+            </div>
+            <!--Next Link-->
+        </div>
+    </div>
+</header>
+<div class="summary-page">
+    <section class="content container no-breadcrumb ">
+    <div class=" summary">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-center no-mar">Summary</h2>
+
+                <h4 class="section-title"><i class="icon ed-about"></i>About You</h4>
+            </div>
+        </div>
+        <div class="row">           
+            <div class="col-sm-6 col-xs-12 no-paddingright">
+                <div class="form-row clearfix" ng-class="{'inputError': editForm.childName.$dirty && editForm.childName.$error.required || editForm.childName.$error.pattern}">
+                    <label class="">Your Child's Name</label>
+                    <input type="text" name="childName" ng-pattern = "/^[a-zA-Z ]+$/" ng-model="model.childName" maxlength="60" required/>
+                    <span class ="error" ng-show="editForm.childName.$dirty && editForm.childName.$error.required || editForm.childName.$error.pattern">Please enter valid input.</span>  
+                <!--  <span class="error" ng-show="userForm.childName.$dirty && userForm.childName.$error.pattern">Please use letters only</span> -->
+                </div>  
+                      
+            </div>
+            
+            <div class="col-sm-6 col-xs-12 no-paddingleft">
+                <div class="form-row clearfix" ng-class="{'inputError': editForm.childAge.$dirty && editForm.childAge.$error.required || ageError}">
+                    <label class="">Your Child's Current Age</label>
+                    <div class="value clearfix">
+                        <input type="text" name="childAge" number-dir ng-change="childAgeValidation()" ng-model="model.childAge"class="pull-left small no-pad" maxlength="2" required/>
+                        <span class="add-on">years old</span>
+                    </div>
+                    <span class="error" ng-show="editForm.childAge.$dirty && editForm.childAge.$error.required"> Please enter valid input.</span> 
+                    <span class="error" ng-show="ageError && isMale" ng-cloak>
+                        Please enter the age between 0 and 21
+                    </span>
+                    <span class="error" ng-show="ageError && !isMale" ng-cloak>
+                        Please enter the age between 0 and 19
+                    </span>                     
+                </div> 
+                     
+            </div>
+                       
+        </div>
+        <!--Child Details Ends Here-->
+
+
+        <div class="row child-gender">
+            <div class="col-sm-12">
+                <label>Your child's gender</label>
+            </div>      
+            <div class="col-sm-12 col-xs-12">
+                <div class="gender male text-center">
+                    <a href="" ng-click="setGender('Male')" ng-class="{'myStyleMale': isMale , '': !isMale}">
+                          <i class="icon ed-male" ng-show="!isMale"></i>
+                          <i ng-show="isMale" class="icon ed-male active-male"></i>
+                        <p>Male</p>
+                    </a>
+                </div>
+
+                <div class="gender female text-center">
+                    <a href="" ng-click="setGender('Female')" ng-class="{'': isMale , 'myStyleFemale': !isMale}">
+                       <i class="icon ed-female" ng-show="isMale"></i>
+                       <i class="icon ed-female active-female" ng-show="!isMale"></i>
+                        <p>Female</p>
+                    </a>
+                </div>          
+            </div>                      
+        </div>
+        <!--Gender Ends Here-->
+
+
+        <h4 class="section-title"><i class="icon ed-target"></i>Education Target</h4>
+        <div class="row">           
+            <div class="col-sm-12 col-xs-12 text-center">
+                <div class="country1">
+                    <a href="" ng-click="setCountry('SG')" ng-class="{'myStyleCountry': isSingapore , '': !isSingapore}">                 
+                        <p>Singapore</p>
+                    </a>
+
+                    <a href="" ng-click="setCountry('AU')" ng-class="{'myStyleCountry': isAustralia , '': !isAustralia}">                   
+                        <p>Australia</p>
+                    </a>
+
+                    <a href="" ng-click="setCountry('US')" ng-class="{'myStyleCountry': isUnitedStates , '': !isUnitedStates}">                   
+                        <p>United States</p>
+                    </a>
+
+                    <a href="" ng-click="setCountry('UK')" ng-class="{'myStyleCountry': isUnitedKingdom , '': !isUnitedKingdom}">                   
+                        <p>United Kingdom</p>
+                    </a>
+                </div>
+            </div>  
+        </div>
+        <!--Education target Ends Here-->   
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-center">Financial Information</h2>              
+            </div>
+        </div>
+
+
+        <h3>Current</h3>
+        <h4 class="section-title"><i class="icon ed-cash"></i>Cash</h4>
+        <div class="row">           
+            <div class="col-sm-6 col-xs-12 no-paddingright">
+                <div class="form-row clearfix" ng-class="{'inputError': editForm.cash.$dirty && editForm.cash.$error.required}">
+                    <label class="">Allocated to University</label>
+                    <div class="value clearfix">
+                        <span class="add-on pull-left add-left">SGD</span>
+                        <input type="text" name="cash" ng-model="model.cash" remove-zero fcsa-number  number-dir class="pull-left small" maxlength="13" required/>
+                    </div>
+                    <span class ="error" ng-show="editForm.cash.$dirty && editForm.cash.$error.required">Please enter valid input.</span>  
+                </div>  
+                              
+            </div>
+
+
+            <div class="col-sm-6 col-xs-12 no-paddingleft">
+                <div class="form-row clearfix" ng-class="{'inputError':editForm.cashRor.$dirty && editForm.cashRor.$error.required}">
+                    <label class="">Annual Return</label>
+                    <div class="value clearfix">                        
+                        <input type="text" name="cashRor" number-dir ng-model="model.cashRor" class="pull-left medium no-pad" maxlength="5" required/>
+                        <span class="add-on pull-left">%</span>
+                    </div>
+                    <span class ="error" ng-show="editForm.cashRor.$dirty && editForm.cashRor.$error.required">Please enter valid input.</span>
+                </div> 
+                               
+            </div>                  
+        </div>
+        <!--Cash Ends Here-->   
+
+
+
+        <h4 class="section-title"><i class="icon ed-investment"></i>Investment &amp; Insurance</h4>
+        <div class="row">           
+            <div class="col-sm-6 col-xs-12 no-paddingright">
+                <div class="form-row clearfix" ng-class="{'inputError':editForm.insuranceCash.$dirty && editForm.insuranceCash.$error.required}">
+                    <label class="">Allocated to University</label>
+                    <div class="value clearfix">
+                        <span class="add-on pull-left add-left">SGD</span>
+                        <input type="text" name="insuranceCash"  number-dir remove-zero fcsa-number ng-model ="model.insuranceCash" maxlength="13"  class="pull-left small" required/>
+                    </div>
+                    <span class ="error" ng-show="editForm.insuranceCash.$dirty && editForm.insuranceCash.$error.required"> Please enter valid input.</span>  
+                </div>
+                
+               <!--  <span class="error" ng-show="editForm.insuranceCash.$dirty && editForm.insuranceCash.$error.pattern">Please use numbers only</span>  -->
+            </div>
+
+            <div class="col-sm-6 col-xs-12 no-paddingleft">
+                <div class="form-row clearfix" ng-class="{'inputError': editForm.insuranceRor.$dirty && editForm.insuranceRor.$error.required}">
+                    <label class="">Annual Return</label>
+                    <div class="value clearfix">                        
+                        <input type="text" name="insuranceRor" number-dir ng-model="model.insuranceRor" class="pull-left medium no-pad" maxlength="5"  required/>
+                        <span class="add-on pull-left">%</span>
+                    </div>
+                     <span class ="error" ng-show="editForm.insuranceRor.$dirty && editForm.insuranceRor.$error.required"> Please enter valid input.</span>
+                </div> 
+               
+               <!--  <span class="error" ng-show="editForm.insuranceRor.$dirty && editForm.insuranceRor.$error.pattern">Please use numbers only</span>      -->
+            </div>                  
+        </div>
+        <!--Investment and insurance target Ends Here-->    
+
+
+        <h2>Future</h2>
+        <h4 class="section-title"><i class="icon ed-lumpsum"></i>Lump Sum at University Age</h4>
+        <div class="row">           
+            <div class="col-sm-6 col-xs-12 no-paddingright">
+                <div class="form-row clearfix" ng-class="{'inputError': editForm.lumpsumpCash.$dirty && editForm.lumpsumpCash.$error.required}">
+                    <label class="">Allocated to University</label>
+                    <div class="value clearfix">
+                        <span class="add-on pull-left add-left">SGD</span>
+                        <input type="text" name="lumpsumpCash" number-dir remove-zero fcsa-number ng-model="model.lumpsumpCash" number-dir class="pull-left small" maxlength="13"  required/>
+                    </div>
+                    <span class ="error" ng-show="editForm.lumpsumpCash.$dirty && editForm.lumpsumpCash.$error.required"> Please enter valid input.</span>
+                </div>  
+                 
+                 <!-- <span class="error" ng-show="editForm.additionalLumpSum.$dirty && editForm.additionalLumpSum.$error.pattern">Please use numbers only</span>     -->    
+            </div>
+                  
+        </div>
+        <!--LumpSum Ends Here-->    
+    </div>
+</section>
+</div>
+</form>
