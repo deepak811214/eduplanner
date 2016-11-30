@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html ng-app="EduPlanner" id="ng-app" xmlns:ng="http://angularjs.org">
 <head>
@@ -96,3 +97,103 @@
     <script src="app/pages/personalDetails/personal-details-controller.js"></script>
   </body>
 </html>
+=======
+<!doctype html>
+<html ng-app="EduPlanner" id="ng-app" xmlns:ng="http://angularjs.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <title>Education Planner</title>
+    <link href="app/theme/css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
+    <!-- <link href="app/theme/css/theme.css" rel="stylesheet" type="text/css" media="screen"> -->
+    <link href="app/theme/css/jquery.nouislider.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="app/theme/css/style.css" rel="stylesheet" type="text/css" media="screen">
+    <!-- <link href="app/theme/css/jquery.nouislider.pips.css" rel="stylesheet" type="text/css" media="screen"> -->
+    <!--[if lt IE 9]>
+     <script src="lib/modernizr-latest.js"></script>
+     <script src="lib/ie-shiv.js"></script>
+        <script>
+          document.createElement('ng-include');
+          document.createElement('ng-pluralize');
+          document.createElement('ng-view');
+          // Optionally these for CSS
+          document.createElement('ng:include');
+          document.createElement('ng:pluralize');
+          document.createElement('ng:view');
+          (function() {
+           window.XMLHttpRequest = window.XMLHttpRequest || (function() {
+          return new window.ActiveXObject("Microsoft.XMLHTTP");
+           });
+         })();
+
+
+        </script>
+        <style type="text/css">
+         section, \:section {
+               display: block;
+           }
+        </style>
+    <![endif]-->
+        <script>
+        var currentUrl = location.href;
+        var redirectUrl;
+        if(currentUrl.indexOf('posb') != -1){
+          document.write('<link rel="stylesheet" href="app/theme/css/POSBtheme.css" media="screen">');
+          document.write('<link rel="stylesheet" href="app/theme/css/POSBprint.css" media="print">');
+          
+        } else {
+          document.write('<link rel="stylesheet" href="app/theme/css/DBStheme.css" media="screen">');
+          document.write('<link rel="stylesheet" href="app/theme/css/DBSprint.css" media="print">');
+        }
+      </script>
+  </head>
+  <body>
+    <main> 
+     <!-- <header-dir ng-if="!hideLayout" animation-Dir class="view"></header-dir> -->
+<!--      <div data-ng-include src="'app/widgets/header/header-template.html'"></div>
+     <div data-ng-include src="'app/core/html/breadcumb.html'"></div> -->
+    <div data-ng-view class="view" ng-class="animate">
+      </div>  
+    </main>
+    <script src="lib/jquery-1.9.1.js"></script>
+    <script src="lib/jquery.liblink.js"></script>
+    <script src="lib/jquery.nouislider.all.js"></script>
+    <script src="lib/jquery.liblink.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-route.js"></script>
+    <script src="lib/angular-resource.js"></script>  
+    <script src="lib/angular-cookies.js"></script>
+    <script src="lib/angular-touch.js"></script>
+    <script src="lib/angular-sanitize.js"></script>
+    <script src="lib/angular-animate.js"></script>
+    <script src="lib/ng-currency.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/nouislider.js"></script>
+    <script src="lib/highcharts.js"></script>
+    <script src="lib/highcharts-ng.js"></script>
+    <script src="lib/fcsaNumber.js"></script>
+    <script src="app/core/app.js"></script>
+    <script src="app/widgets/header/header-directive.js"></script>
+    <script src="app/widgets/header/header-controller.js"></script>
+    <script src="app/core/directives/breadcumb-directive.js"></script>
+    <script src="app/core/directives/logo-directive.js"></script>
+    <script src="app/core/directives/inputfocus-directive.js"></script>      
+    <script src="app/core/directives/tooltip-directive.js"></script>
+    <script src="app/core/directives/number-directive.js"></script>
+    <script src="app/core/directives/avoidzero-directive.js"></script>
+    <script src="app/core/directives/animClass-directive.js"></script>
+    <script src="app/core/directives/disableAnimate-directive.js"></script>
+    <script src="app/core/services/common-service.js"></script>
+    <script src="app/core/services/calculator-service.js"></script>
+    <script src="app/core/services/chart-provider.js"></script>
+    <script src="app/core/services/currency-filter.js"></script>
+    <script src="app/pages/actNow/act-now-controller.js"></script>
+    <script src="app/pages/edit/edit-controller.js"></script>
+    <script src="app/pages/educationTarget/education-target-controller.js"></script>
+    <script src="app/pages/report/report-controller.js"></script>
+    <script src="app/pages/sourceofFunds/sourceofFunds-controller.js"></script>
+    <script src="app/pages/personalDetails/personal-details-controller.js"></script>
+  </body>
+</html>
+>>>>>>> origin
